@@ -1,0 +1,24 @@
+{
+    "name": "inmortus",
+    "version": "0.1",
+    "authors": [
+        "anibalajt <anibalajt@gmail.com>"
+    ],
+    "description": "comando inmortus",
+    "main": "index.html",
+    "moduleType": [],
+    "license": "MIT",
+    "homepage": "",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "jquery": "1.10.2",
+        "polymer": "1.0.0",
+        "underscore": "~1.8.3"
+    }
+}
