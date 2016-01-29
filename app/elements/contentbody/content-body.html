@@ -1,0 +1,19 @@
+<dom-module id="content-body">
+    <template>
+        <div id="content">
+
+        </div>
+    </template>
+    <script>
+    Polymer({
+        is: "content-body",
+        properties: {
+
+        },
+        attached:function(){
+            injectPage(document.location.pathname);
+        }
+
+    });
+    </script>
+</dom-module>

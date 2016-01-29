@@ -1,5 +1,7 @@
 document.addEventListener('click', function(e) {
-    // Allow users to open new tabs.
+    currentPage(e)
+})
+function currentPage(e){
     if (e.metaKey || e.ctrlKey || e.which == 2) {
         return;
     }
@@ -13,7 +15,6 @@ document.addEventListener('click', function(e) {
             (location.origin == el.origin) &&
             !(el.hash && (el.pathname == location.pathname)) &&
             el.target == '') {
-                // console.log(el.href)
                 injectPage(el.pathname);
                 e.preventDefault();
                 e.stopPropagation();
@@ -21,21 +22,14 @@ document.addEventListener('click', function(e) {
             return;
         }
     }
-})
-
-
-document.addEventListener('polymer-ready', function(e) {
-    console.log("polymer-ready")
-})
-document.addEventListener('DOMContentLoaded', function(e) {
-    console.log("DOMContentLoaded")
-
-})
-function injectPage(url, opt_addToHistory) {
+}
+function injectPage(p, opt_addToHistory) {
 
     var xhr = new XMLHttpRequest();
 
-    xhr.open('GET', "http://192.168.1.10:3000/api"+url,true);
+    var url = "http://localhost:3000/api"+p;
+
+    xhr.open('GET', url, true);
     // xhr.responseType = 'document';
     // xhr.overrideMimeType("text/html; charset=utf-8");
     xhr.onloadend = function(e) {
@@ -44,10 +38,17 @@ function injectPage(url, opt_addToHistory) {
             console.error('Page fetch error', e.target.status, e.target.statusText);
             return;
         }
+        if(p !=="/"){
+            var data = JSON.parse(e.target.response);
+            if(typeof data === "object"){
+                $("#content").html(data.data)
+                history.pushState({url: p}, "hola mundo", p);
+            }
+        }else{
+            $("#content").html("inicio")
+            history.pushState({url: "/"}, "hola mundo", "/");
+        }
 
-        var doc = e.target.response;
-        console.log(doc)
-        history.pushState({url: url}, "hola mundo", url);
     };
 
     xhr.send();

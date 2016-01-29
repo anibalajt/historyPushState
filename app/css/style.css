@@ -15,7 +15,7 @@ html,body {
     margin: 0;
     background-color: #f5f8fa;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #mainContainer{
@@ -29,12 +29,3 @@ ul,li{
     text-transform: none;
     text-transform: none;
 }
-/***********************start nav*************************/
-.nav li {
-    float: left;
-    padding: 14px 10px;
-}
-.nav {
-    position: relative;
-}
-/**********************end nav**************************/
